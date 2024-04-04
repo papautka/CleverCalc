@@ -22,10 +22,19 @@
         android:id="@+id/circleFragment2"
         android:name="com.uteev.clevercalc.screens.circle.CircleFragment"
         android:label="fragment_circle"
-        tools:layout="@layout/fragment_circle" />
+        tools:layout="@layout/fragment_circle" >
+        <action
+            android:id="@+id/action_circleFragment2_to_graphicFragment"
+            app:destination="@id/graphicFragment" />
+    </fragment>
     <fragment
         android:id="@+id/primeFragment"
         android:name="com.uteev.clevercalc.screens.prime.PrimeFragment"
         android:label="fragment_prime"
         tools:layout="@layout/fragment_prime" />
+    <fragment
+        android:id="@+id/graphicFragment"
+        android:name="com.uteev.clevercalc.screens.graphic.GraphicFragment"
+        android:label="fragment_graphic"
+        tools:layout="@layout/fragment_graphic" />
 </navigation>
