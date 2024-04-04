@@ -9,11 +9,15 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.uteev.clevercalc.R
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class PrimeFragment: Fragment() {
@@ -23,12 +27,14 @@ class PrimeFragment: Fragment() {
     private lateinit var checkReverse : CheckBox
     private lateinit var bPrimeAnalyze : Button
     private lateinit var infoResult : TextView
-
+    private lateinit var prog_bar : ProgressBar
     private fun initView(viewPrime : View) {
         editnumber = viewPrime.findViewById(R.id.editnumber)
         checkReverse =  viewPrime.findViewById(R.id.checkReverse)
         bPrimeAnalyze =  viewPrime.findViewById(R.id.bPrimeAnalyze)
         infoResult =  viewPrime.findViewById(R.id.infoResultPrime)
+        prog_bar = viewPrime.findViewById(R.id.prog_bar)
+        prog_bar = viewPrime.findViewById(R.id.prog_bar)
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,11 +42,7 @@ class PrimeFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val viewPrime = inflater.inflate(R.layout.fragment_prime, container, false)
-//        initView(viewPrime)
-        editnumber = viewPrime.findViewById(R.id.editnumber)
-        checkReverse =  viewPrime.findViewById(R.id.checkReverse)
-        bPrimeAnalyze =  viewPrime.findViewById(R.id.bPrimeAnalyze)
-        infoResult =  viewPrime.findViewById(R.id.infoResultPrime)
+        initView(viewPrime)
 
         bPrimeAnalyze.setOnClickListener {
             checkPrime()
@@ -51,22 +53,29 @@ class PrimeFragment: Fragment() {
     private fun checkPrime() {
         if(editnumber.text.isEmpty()) {
 //            Toast.makeText(this, "Введите целое число!", Toast.LENGTH_SHORT).show()
+            infoResult.text = "Введите целое число!"
         } else {
             if (checkRangeInteger() == 0) {
 //                Toast.makeText(this, "Число в недопустимом диапозоне!", Toast.LENGTH_SHORT).show()
+                infoResult.text = "Число в недопустимом диапозоне!"
             } else {
                 var strTmp = editnumber.text.toString()
                 if (checkReverse.isChecked) {
                     strTmp = strTmp.reversed()
                 }
-                calcPrime(strTmp)
+                lifecycleScope.launch {
+                    calcPrime(strTmp)
+                }
             }
         }
     }
 
 
 
-    private fun calcPrime(strTmp: String) {
+    private suspend fun calcPrime(strTmp: String) {
+        prog_bar.visibility = View.VISIBLE
+        delay(3000)
+        prog_bar.visibility = View.INVISIBLE
         var number: Int = strTmp.toString().toInt()
         var numbers =  mutableListOf<Int>()
 
