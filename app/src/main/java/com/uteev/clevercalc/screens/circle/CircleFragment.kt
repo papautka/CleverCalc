@@ -13,6 +13,7 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -73,6 +74,7 @@ class CircleFragment : Fragment(){
         val bCreateGraphic = view.findViewById<Button>(R.id.bCreateGraph)
         val controller = findNavController()
         bCreateGraphic.setOnClickListener {
+            viewModel.inputStringLiveData.value = "ХуЙ!"
             controller.navigate(R.id.graphicFragment)
         }
     }
