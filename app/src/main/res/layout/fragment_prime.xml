@@ -4,33 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageButton
-        android:id="@+id/paBiBack"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/blue"
-        android:contentDescription="@string/ca_button_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.904"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+    android:layout_height="match_parent"
+    tools:context=".screens.prime.PrimeFragment"
+>
 
 
     <EditText
         android:id="@+id/editnumber"
         android:layout_width="358dp"
         android:layout_height="66dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="32dp"
         android:autofillHints="phone"
         android:ems="10"
         android:hint="@string/ca_empty"
         android:inputType="numberDecimal"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="LabelFor" />
@@ -39,10 +29,10 @@
         android:id="@+id/checkReverse"
         android:layout_width="349dp"
         android:layout_height="61dp"
-        android:layout_marginTop="12dp"
         android:text="@string/pa_reverse"
+        app:layout_constraintBottom_toTopOf="@+id/bPrimeAnalyze"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintHorizontal_bias="0.403"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editnumber" />
 
@@ -51,28 +41,31 @@
         android:layout_width="359dp"
         android:layout_height="57dp"
         android:backgroundTint="@color/purple"
-        android:textColor="@color/white"
         android:text="@string/pa_b_analyze"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/infoResultPrime"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkReverse"
+        app:layout_constraintTop_toBottomOf="@+id/editnumber"
+        app:layout_constraintVertical_bias="0.811"
         tools:ignore="VisualLintOverlap" />
 
     <TextView
         android:id="@+id/infoResultPrime"
         android:layout_width="370dp"
         android:layout_height="268dp"
-        android:layout_marginBottom="136dp"
+        android:layout_marginTop="336dp"
         android:background="@color/cardview_dark_background"
         android:gravity="center"
         android:text="@string/ca_info"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.609"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textPhone"
@@ -96,6 +89,19 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="412dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="676dp"
+        android:background="@color/blue"
+        android:backgroundTint="@color/blue"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

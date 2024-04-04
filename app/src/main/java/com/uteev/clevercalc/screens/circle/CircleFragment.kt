@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.uteev.clevercalc.R
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.lang.NumberFormatException
 import kotlin.math.abs
 import kotlin.math.pow
@@ -31,6 +35,7 @@ class CircleFragment : Fragment(){
     private lateinit var bCreateGraphic : Button
     private lateinit var infoResult : TextView
     private lateinit var biBack : ImageButton
+    private lateinit var prog_bar : ProgressBar
 
 
 
@@ -50,20 +55,25 @@ class CircleFragment : Fragment(){
         bCircleAnalyze = viewCircle.findViewById(R.id.bCircleAnalyze)
         bCreateGraphic = viewCircle.findViewById(R.id.bCreateGraph)
         infoResult = viewCircle.findViewById(R.id.infoResult)
-        biBack = viewCircle.findViewById(R.id.biBack)
+        prog_bar = viewCircle.findViewById(R.id.prog_bar)
 
         bCircleAnalyze.setOnClickListener {
-            calcCircle()
+            lifecycleScope.launch {
+                calcCircle()
+            }
         }
         return viewCircle
     }
 
-    private fun calcCircle() {
+    private suspend fun calcCircle() {
         val listNum = returnMasNumber()
         if(listNum.isEmpty()) {
-//            Toast.makeText(this, "Корректно заполните все ячейки!", Toast.LENGTH_SHORT).show()
+            infoResult.setText("Корректно заполните все ячейки!")
         } else {
+            prog_bar.visibility = View.VISIBLE
+            delay(3000)
             checkCircle(listNum)
+            prog_bar.visibility = View.INVISIBLE
         }
     }
 

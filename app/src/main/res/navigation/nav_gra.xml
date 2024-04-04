@@ -23,4 +23,9 @@
         android:name="com.uteev.clevercalc.screens.circle.CircleFragment"
         android:label="fragment_circle"
         tools:layout="@layout/fragment_circle" />
+    <fragment
+        android:id="@+id/primeFragment"
+        android:name="com.uteev.clevercalc.screens.prime.PrimeFragment"
+        android:label="fragment_prime"
+        tools:layout="@layout/fragment_prime" />
 </navigation>
