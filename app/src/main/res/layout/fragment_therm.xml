@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+
+    <ImageButton
+        android:id="@+id/taBiBack"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/blue"
+        android:contentDescription="@string/ca_button_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <TextView
+        android:id="@+id/taEnteraTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/ta_t_enter"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/taEnterHum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taChooseSeason" />
+
+    <TextView
+        android:id="@+id/taChooseMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/ta_t_choose_mode"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/taChooseSeason"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/taChooseSeason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="47dp"
+        android:text="@string/ta_t_choose_season"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/taEnteraTemp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taChooseMode" />
+
+    <TextView
+        android:id="@+id/taEnterHum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/ta_t_enter_hum"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/bThermAnalyze"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taEnteraTemp" />
+
+    <Spinner
+        android:id="@+id/spinnerMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="24dp"
+        android:entries="@array/ta_arr_for_enter_mode"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerSeason"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerSeason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
+        android:entries="@array/ta_arr_for_enter_season"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/taEnteraTempEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerMode" />
+
+    <EditText
+        android:id="@+id/taEnteraTempEdit"
+        android:layout_width="121dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="phone"
+        android:ems="10"
+        android:hint="@string/ca_empty"
+        android:inputType="numberDecimal|numberSigned"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/taEnterHumEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerSeason"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/taEnterHumEdit"
+        android:layout_width="121dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="28dp"
+        android:autofillHints="phone"
+        android:ems="10"
+        android:hint="@string/ca_empty"
+        android:inputType="numberDecimal|numberSigned"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/bThermAnalyze"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/bThermAnalyze"
+        android:layout_width="359dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="304dp"
+        android:backgroundTint="@color/purple"
+        android:text="@string/pa_b_analyze"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="VisualLintOverlap" />
+
+    <TextView
+        android:id="@+id/infoResultTherm"
+        android:layout_width="362dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/cardview_dark_background"
+        android:gravity="center"
+        android:text="@string/ca_info"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bThermAnalyze"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

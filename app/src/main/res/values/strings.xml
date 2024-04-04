@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">CleverCalc</string>
+    <string name="splash">Splash</string>
+
+    <string name="ma_button_circle_analyze_text">Circle Analyze</string>
+    <string name="ma_button_prime_analyze_text">Prime Analyze</string>
+    <string name="ma_button_therm_analyze_text">Therm Analyze</string>
+
+    <string name="ca_x">X:</string>
+    <string name="ca_y">Y:</string>
+    <string name="ca_r">R:</string>
+    <string name="ca_text_pres1">Circle Presentation 1:</string>
+    <string name="ca_text_pres2">Circle Presentation 2:</string>
+    <string name="ca_button_analyze">Analyze</string>
+    <string name="ca_button_back">Back</string>
+    <string name="ca_button_graphic">Create graphic</string>
+    <string name="ca_empty">0</string>
+    <string name="ca_info"> </string>
+    <string name="ca_no_str_to_float">Не удалось перевести строку в число</string>
+    <string name="ca_name_fun_returnMasNumber">returnMasNumber</string>
+    <string name="ca_list_is_empty">List is empty</string>
+
+    <string name="pa_text_enter">Enter Integer number</string>
+    <string name="pa_reverse">Reverse</string>
+    <string name="pa_b_analyze">Analyze</string>
+
+    <string name="ta_t_choose_mode">Choose output mode:</string>
+    <string name="ta_t_choose_season">Choose Season:</string>
+    <string name="ta_t_enter">Enter a temperature</string>
+    <string name="ta_t_enter_hum">Enter humidity</string>
+    <string name="ta_b_analyze">Analyze</string>
+
+    <array name="ta_arr_for_enter_mode">
+        <item>Kelvin</item>
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+    </array>
+
+    <array name="ta_arr_for_enter_season">
+        <item>Winter</item>
+        <item>Summer</item>
+    </array>
 </resources>
