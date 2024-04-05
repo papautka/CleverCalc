@@ -1,25 +1,18 @@
 package com.uteev.clevercalc.screens.circle
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.uteev.clevercalc.R
-import com.uteev.clevercalc.screens.graphic.GraphicFragment
+import com.uteev.clevercalc.databinding.FragmentCircleBinding
+import com.uteev.clevercalc.screens.data.DataModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.NumberFormatException
@@ -28,19 +21,9 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 class CircleFragment : Fragment(){
-    private val viewModel : CircleViewModel by viewModels()
 
-    private lateinit var xc1 : EditText
-    private lateinit var yc1 : EditText
-    private lateinit var rc1 : EditText
-    private lateinit var xc2 : EditText
-    private lateinit var yc2 : EditText
-    private lateinit var rc2 : EditText
-    private lateinit var bCircleAnalyze : Button
-    private lateinit var bCreateGraphic : Button
-    private lateinit var infoResult : TextView
-    private lateinit var prog_bar : ProgressBar
-
+    private val dataModel: DataModel by activityViewModels()
+    lateinit var binding_circle : FragmentCircleBinding
 
 
     override fun onCreateView(
@@ -48,53 +31,42 @@ class CircleFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewCircle = inflater.inflate(R.layout.fragment_circle, container, false)
-        xc1 = viewCircle.findViewById(R.id.editxc1)
-        yc1 = viewCircle.findViewById(R.id.edityc1)
-        rc1 = viewCircle.findViewById(R.id.editrc1)
-        xc2 = viewCircle.findViewById(R.id.editxc2)
-        yc2 = viewCircle.findViewById(R.id.edityc2)
-        rc2 = viewCircle.findViewById(R.id.editrc2)
-
-        bCircleAnalyze = viewCircle.findViewById(R.id.bCircleAnalyze)
-        bCreateGraphic = viewCircle.findViewById(R.id.bCreateGraph)
-        infoResult = viewCircle.findViewById(R.id.infoResult)
-        prog_bar = viewCircle.findViewById(R.id.prog_bar)
-
-        bCircleAnalyze.setOnClickListener {
-            lifecycleScope.launch {
-                calcCircle()
-            }
-        }
-        return viewCircle
+        binding_circle = FragmentCircleBinding.inflate(inflater)
+        return binding_circle.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bCreateGraphic = view.findViewById<Button>(R.id.bCreateGraph)
         val controller = findNavController()
-        bCreateGraphic.setOnClickListener {
-            viewModel.inputStringLiveData.value = "ХуЙ!"
+        binding_circle.bCreateGraph.setOnClickListener {
+            dataModel.messageForFragmentGraphic.value = "Hello fragment graphic"
             controller.navigate(R.id.graphicFragment)
+        }
+
+        binding_circle.bCircleAnalyze.setOnClickListener {
+            lifecycleScope.launch {
+                calcCircle()
+            }
         }
     }
 
     private suspend fun calcCircle() {
         val listNum = returnMasNumber()
         if(listNum.isEmpty()) {
-            infoResult.setText("Корректно заполните все ячейки!")
+            binding_circle.infoResult.setText("Корректно заполните все ячейки!")
         } else {
-            prog_bar.visibility = View.VISIBLE
+            binding_circle.progBar.visibility = View.VISIBLE
             delay(3000)
             checkCircle(listNum)
-            prog_bar.visibility = View.INVISIBLE
+            binding_circle.progBar.visibility = View.INVISIBLE
         }
     }
 
     private fun checkCircle(n: MutableList<Float>) {
         val dist_betw_p = sqrt((n[0]-n[3])*(n[0]-n[3]) + (n[1]-n[4])*(n[1]-n[4]))
         val strResult = checkIntersect(dist_betw_p, n)
-        infoResult.setText(String.format(strResult))
+        binding_circle.infoResult.setText(String.format(strResult))
     }
 
     fun checkTouched(n: MutableList<Float>): String {
@@ -146,12 +118,12 @@ class CircleFragment : Fragment(){
     private fun returnMasNumber() : MutableList<Float> {
         val listNum : MutableList<Float> = mutableListOf()
         try {
-            listNum.add(xc1.text.toString().toFloat())
-            listNum.add(yc1.text.toString().toFloat())
-            listNum.add(rc1.text.toString().toFloat())
-            listNum.add(xc2.text.toString().toFloat())
-            listNum.add(yc2.text.toString().toFloat())
-            listNum.add(rc2.text.toString().toFloat())
+            listNum.add(binding_circle.editxc1.text.toString().toFloat())
+            listNum.add(binding_circle.edityc1.text.toString().toFloat())
+            listNum.add(binding_circle.editrc1.text.toString().toFloat())
+            listNum.add(binding_circle.editxc2.text.toString().toFloat())
+            listNum.add(binding_circle.edityc2.text.toString().toFloat())
+            listNum.add(binding_circle.editrc2.text.toString().toFloat())
         } catch (e : NumberFormatException) {
             Log.d("${R.string.ca_name_fun_returnMasNumber}", "${R.string.ca_no_str_to_float}")
             listNum.clear()

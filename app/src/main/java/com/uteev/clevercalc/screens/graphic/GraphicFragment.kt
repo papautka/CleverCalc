@@ -4,31 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import com.uteev.clevercalc.R
-import com.uteev.clevercalc.screens.circle.CircleViewModel
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleOwner
+import com.uteev.clevercalc.databinding.FragmentGraphicBinding
+import com.uteev.clevercalc.screens.data.DataModel
 
 class GraphicFragment : Fragment() {
-    private val viewModel : CircleViewModel by viewModels()
-    private var inputStr : String? = null
-    private lateinit var textView3 : TextView
+    private val dataModel: DataModel by activityViewModels()
+    lateinit var binding_fragment : FragmentGraphicBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewGraphic = inflater.inflate(R.layout.fragment_graphic, container, false)
-        textView3 = viewGraphic.findViewById(R.id.textView3)
-
-        viewModel.inputStringLiveData.observe(viewLifecycleOwner, Observer { input ->
-            inputStr = input
-            textView3.text = inputStr
-        })
-
-        return  viewGraphic
+        binding_fragment = FragmentGraphicBinding.inflate(inflater)
+        return binding_fragment.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        dataModel.messageForFragmentGraphic.observe(activity as LifecycleOwner) {
+            binding_fragment.textView3.text = it
+        }
+    }
 }
