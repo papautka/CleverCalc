@@ -94,6 +94,8 @@ class SmartFragment : Fragment() {
 
     private fun primaryNumber() : Job{
         return lifecycleScope.launch {
+            b_s.bSimple.setText("STOP")
+            delay(500L)
             val x = b_s.inputX.text.toString().toInt()
             val simpleJob = viewPrimeModel.primaryNumber(x)
             if (simpleJob) {
@@ -101,6 +103,7 @@ class SmartFragment : Fragment() {
             } else {
                 b_s.tSimple.setText("${x} - no prime")
             }
+            b_s.bSimple.setText("RUN")
         }
     }
 

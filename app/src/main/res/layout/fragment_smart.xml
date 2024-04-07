@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.smart.SmartFragment">
+    tools:context=".screens.smart.SmartFragment"
+    tools:layout_editor_absoluteX="76dp"
+    tools:layout_editor_absoluteY="-3dp">
 
     <EditText
         android:id="@+id/inputX"
@@ -15,8 +17,9 @@
         android:hint="Input x"
         android:inputType="number"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/xFactorial"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,8 +30,9 @@
         android:layout_marginTop="60dp"
         android:text="@string/xFactorial"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/xSqrt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintHorizontal_bias="0.134"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputX" />
 
@@ -42,6 +46,7 @@
         android:backgroundTint="@color/blue"
         android:text="@string/run"
         android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/bSqrt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/xFactorial"
@@ -54,8 +59,9 @@
         android:layout_marginTop="40dp"
         android:text="x^(1/2)="
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/xSqrt3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.248"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xFactorial" />
 
@@ -66,8 +72,9 @@
         android:layout_marginTop="8dp"
         android:text="x^(1/3)="
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/xlog"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.248"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xSqrt" />
 
@@ -81,6 +88,7 @@
         android:backgroundTint="@color/blue"
         android:text="@string/run"
         android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/bLog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/xSqrt"
@@ -93,8 +101,9 @@
         android:layout_marginTop="36dp"
         android:text="log(x)="
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/xln"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xSqrt3" />
 
@@ -104,8 +113,9 @@
         android:layout_height="31dp"
         android:text="ln(x)="
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/xmult2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xlog" />
 
@@ -119,6 +129,7 @@
         android:backgroundTint="@color/blue"
         android:text="@string/run"
         android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/bmult"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/xlog"
@@ -129,10 +140,11 @@
         android:id="@+id/xmult2"
         android:layout_width="198dp"
         android:layout_height="28dp"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
         android:text="x^2="
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/xmult3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xln" />
 
@@ -140,9 +152,10 @@
         android:id="@+id/xmult3"
         android:layout_width="197dp"
         android:layout_height="28dp"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="24dp"
         android:text="x^3="
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tSimple"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xmult2" />
 
@@ -156,6 +169,7 @@
         android:backgroundTint="@color/blue"
         android:text="@string/run"
         android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/bSimple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/xmult3"
@@ -168,12 +182,11 @@
         android:layout_marginTop="56dp"
         android:text="Simple-"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tAll"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xmult3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/xmult3" />
 
     <Button
         android:id="@+id/bSimple"
@@ -185,12 +198,11 @@
         android:backgroundTint="@color/blue"
         android:text="@string/run"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bAllStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/tSimple"
-        app:layout_constraintTop_toBottomOf="@+id/bmult"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/bmult" />
 
     <TextView
         android:id="@+id/tAll"

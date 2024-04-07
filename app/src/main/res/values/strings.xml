@@ -32,6 +32,7 @@
     <string name="xFactorial">x!=</string>
     <string name="run">RUN</string>
 
+
     <array name="ta_arr_for_enter_mode">
         <item>Kelvin</item>
         <item>Celsius</item>
