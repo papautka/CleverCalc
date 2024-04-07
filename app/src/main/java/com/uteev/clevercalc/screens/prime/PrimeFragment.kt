@@ -63,7 +63,7 @@ class PrimeFragment: Fragment() {
         var numbers =  mutableListOf<Int>()
 
         if(number < 10) {
-            if(primaryNumber(number)) {
+            if(viewModel.primaryNumber(number)) {
                 b_p.infoResultPrime.setText("${number} - prime")
             } else {
                 b_p.infoResultPrime.setText("${number} - no prime" + "\n ${arithCreate(number)}")
@@ -71,7 +71,7 @@ class PrimeFragment: Fragment() {
         } else {
             numbers = digitCapacity(number)
             for(i in numbers.indices) {
-                if(primaryNumber(numbers[i])) {
+                if(viewModel.primaryNumber(numbers[i])) {
                     b_p.infoResultPrime.setText("${numbers[i]} - prime")
                 } else {
                     b_p.infoResultPrime.setText("${numbers[i]} - no prime" + "\n ${arithCreate(numbers[i])}")
@@ -100,26 +100,7 @@ class PrimeFragment: Fragment() {
         }
         return residues_from_division_all
     }
-
-    private fun primaryNumber(number : Int) : Boolean {
-        var is_primary_number = true
-        var divider = 2
-        var count = 1
-        if(number == 1 || number == 0) {
-            is_primary_number = false
-        } else {
-            while(count != 2 || divider > number) {
-                if(number % divider == 0) {
-                    if(number == divider) break
-                    is_primary_number = false
-                    count++
-                } else {
-                    divider++
-                }
-            }
-        }
-        return is_primary_number
-    }
+    
 
     private fun arithCreate(num: Int): String {
         var numMassive = mutableListOf<Int>()

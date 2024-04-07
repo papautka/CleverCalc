@@ -196,28 +196,30 @@
         android:id="@+id/tAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="84dp"
         android:text="All:"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bAllStart"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tSimple"
+        app:layout_constraintVertical_bias="0.059" />
 
     <Button
         android:id="@+id/bAllStart"
         android:layout_width="249dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/custom_button_background"
         android:backgroundTint="@color/blue"
         android:text="@string/run"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tAll" />
+        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintStart_toEndOf="@+id/tAll"
+        app:layout_constraintTop_toBottomOf="@+id/bSimple"
+        app:layout_constraintVertical_bias="0.108" />
 
     <ProgressBar
         android:id="@+id/progressBar"
