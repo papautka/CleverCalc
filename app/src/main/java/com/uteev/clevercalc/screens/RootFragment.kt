@@ -43,6 +43,9 @@ class RootFragment : Fragment() {
                 1 -> {
                     tab.setIcon(R.drawable.prime_draw)
                 }
+                2 -> {
+                    tab.setIcon(R.drawable.therm_draw)
+                }
             }
         }.attach()
         return view

@@ -5,23 +5,12 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".screens.therm.ThermFragment"
 >
 
-    <ImageButton
-        android:id="@+id/taBiBack"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/blue"
-        android:contentDescription="@string/ca_button_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.904"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <TextView
-        android:id="@+id/taEnteraTemp"
+        android:id="@+id/taEnterTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -52,7 +41,7 @@
         android:layout_marginTop="47dp"
         android:text="@string/ta_t_choose_season"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/taEnteraTemp"
+        app:layout_constraintBottom_toTopOf="@+id/taEnterTemp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taChooseMode" />
 
@@ -66,7 +55,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/bThermAnalyze"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taEnteraTemp" />
+        app:layout_constraintTop_toBottomOf="@+id/taEnterTemp" />
 
     <Spinner
         android:id="@+id/spinnerMode"

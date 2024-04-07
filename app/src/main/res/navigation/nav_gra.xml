@@ -37,4 +37,9 @@
         android:name="com.uteev.clevercalc.screens.graphic.GraphicFragment"
         android:label="fragment_graphic"
         tools:layout="@layout/fragment_graphic" />
+    <fragment
+        android:id="@+id/thermFragment"
+        android:name="com.uteev.clevercalc.screens.therm.ThermFragment"
+        android:label="fragment_therm"
+        tools:layout="@layout/fragment_therm" />
 </navigation>
