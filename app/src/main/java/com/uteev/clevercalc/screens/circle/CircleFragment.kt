@@ -40,8 +40,13 @@ class CircleFragment : Fragment(){
         val bCreateGraphic = view.findViewById<Button>(R.id.bCreateGraph)
         val controller = findNavController()
         binding_circle.bCreateGraph.setOnClickListener {
-            dataModel.messageForFragmentGraphic.value = "Hello fragment graphic"
-            controller.navigate(R.id.graphicFragment)
+            if (returnMasNumber().isEmpty()) {
+                binding_circle.infoResult.setText("Корректно заполните все ячейки!")
+            } else {
+                dataModel.messageForFragmentGraphic.value = returnMasNumber().toFloatArray()
+                controller.navigate(R.id.graphicFragment)
+            }
+
         }
 
         binding_circle.bCircleAnalyze.setOnClickListener {
