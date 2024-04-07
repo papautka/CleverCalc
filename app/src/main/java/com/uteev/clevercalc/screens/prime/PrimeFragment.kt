@@ -5,62 +5,45 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.uteev.clevercalc.R
+import com.uteev.clevercalc.databinding.FragmentPrimeBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class PrimeFragment: Fragment() {
     private val viewModel : PrimeViewModel by viewModels()
-
-    private lateinit var editnumber : EditText
-    private lateinit var checkReverse : CheckBox
-    private lateinit var bPrimeAnalyze : Button
-    private lateinit var infoResult : TextView
-    private lateinit var prog_bar : ProgressBar
-    private fun initView(viewPrime : View) {
-        editnumber = viewPrime.findViewById(R.id.editnumber)
-        checkReverse =  viewPrime.findViewById(R.id.checkReverse)
-        bPrimeAnalyze =  viewPrime.findViewById(R.id.bPrimeAnalyze)
-        infoResult =  viewPrime.findViewById(R.id.infoResultPrime)
-        prog_bar = viewPrime.findViewById(R.id.prog_bar)
-        prog_bar = viewPrime.findViewById(R.id.prog_bar)
-    }
+    lateinit var b_p : FragmentPrimeBinding
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewPrime = inflater.inflate(R.layout.fragment_prime, container, false)
-        initView(viewPrime)
+        b_p = FragmentPrimeBinding.inflate(inflater)
+        return b_p.root
+    }
 
-        bPrimeAnalyze.setOnClickListener {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        b_p.bPrimeAnalyze.setOnClickListener {
             checkPrime()
         }
-        return viewPrime
     }
 
     private fun checkPrime() {
-        if(editnumber.text.isEmpty()) {
+        if(b_p.editnumber.text.isEmpty()) {
 //            Toast.makeText(this, "Введите целое число!", Toast.LENGTH_SHORT).show()
-            infoResult.text = "Введите целое число!"
+            b_p.infoResultPrime.text = "Введите целое число!"
         } else {
             if (checkRangeInteger() == 0) {
 //                Toast.makeText(this, "Число в недопустимом диапозоне!", Toast.LENGTH_SHORT).show()
-                infoResult.text = "Число в недопустимом диапозоне!"
+                b_p.infoResultPrime.text = "Число в недопустимом диапозоне!"
             } else {
-                var strTmp = editnumber.text.toString()
-                if (checkReverse.isChecked) {
+                var strTmp = b_p.editnumber.text.toString()
+                if (b_p.checkReverse.isChecked) {
                     strTmp = strTmp.reversed()
                 }
                 lifecycleScope.launch {
@@ -73,25 +56,25 @@ class PrimeFragment: Fragment() {
 
 
     private suspend fun calcPrime(strTmp: String) {
-        prog_bar.visibility = View.VISIBLE
+        b_p.progBar.visibility = View.VISIBLE
         delay(3000)
-        prog_bar.visibility = View.INVISIBLE
+        b_p.progBar.visibility = View.INVISIBLE
         var number: Int = strTmp.toString().toInt()
         var numbers =  mutableListOf<Int>()
 
         if(number < 10) {
             if(primaryNumber(number)) {
-                infoResult.setText("${number} - prime")
+                b_p.infoResultPrime.setText("${number} - prime")
             } else {
-                infoResult.setText("${number} - no prime" + "\n ${arithCreate(number)}")
+                b_p.infoResultPrime.setText("${number} - no prime" + "\n ${arithCreate(number)}")
             }
         } else {
             numbers = digitCapacity(number)
             for(i in numbers.indices) {
                 if(primaryNumber(numbers[i])) {
-                    infoResult.setText("${numbers[i]} - prime")
+                    b_p.infoResultPrime.setText("${numbers[i]} - prime")
                 } else {
-                    infoResult.setText("${numbers[i]} - no prime" + "\n ${arithCreate(numbers[i])}")
+                    b_p.infoResultPrime.setText("${numbers[i]} - no prime" + "\n ${arithCreate(numbers[i])}")
                 }
             }
         }
@@ -158,7 +141,7 @@ class PrimeFragment: Fragment() {
     private fun checkRangeInteger() : Int {
         var res = 0
         try {
-            res = editnumber.text.toString().toInt()
+            res = b_p.editnumber.text.toString().toInt()
         } catch (e : Exception) {
             Log.d("checkRangeInteger", "Число вышло из диапозона целых")
         }

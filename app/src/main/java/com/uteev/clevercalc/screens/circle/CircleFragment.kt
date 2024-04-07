@@ -37,7 +37,6 @@ class CircleFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val bCreateGraphic = view.findViewById<Button>(R.id.bCreateGraph)
         val controller = findNavController()
         binding_circle.bCreateGraph.setOnClickListener {
             if (returnMasNumber().isEmpty()) {
