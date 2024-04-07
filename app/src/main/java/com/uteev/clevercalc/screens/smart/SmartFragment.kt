@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.uteev.clevercalc.databinding.FragmentSmartBinding
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.cbrt
@@ -32,68 +33,111 @@ class SmartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         b_s.bFactorial.setOnClickListener {
             lifecycleScope.launch {
-                if (checkEmptyInput()) factorial()
+                if (checkEmptyInput()) {
+                    val factorialJob = factorial()
+                    factorialJob.join()
+                }
             }
         }
         b_s.bSqrt.setOnClickListener {
             lifecycleScope.launch {
-                if (checkEmptyInput()) sqrt()
+                if (checkEmptyInput()) {
+                    val sqrtJob = sqrt()
+                    sqrtJob.join()
+                }
             }
         }
         b_s.bLog.setOnClickListener {
             lifecycleScope.launch {
-                if (checkEmptyInput()) log()
+                if (checkEmptyInput()) {
+                    val logJob = log()
+                    logJob.join()
+                }
             }
         }
         b_s.bmult.setOnClickListener {
             lifecycleScope.launch {
-                if (checkEmptyInput()) mult()
+                if (checkEmptyInput()) {
+                    val multJob = mult()
+                    multJob.join()
+                }
             }
         }
         b_s.bAllStart.setOnClickListener {
             lifecycleScope.launch {
                 if (checkEmptyInput()) {
-                    factorial()
-                    sqrt()
-                    mult()
-                    log()
+                    val factorialJob = factorial()
+                    factorialJob.join()
+                    val sqrtJob = sqrt()
+                    sqrtJob.join()
+                    val logJob = log()
+                    log().join()
+                    val multJob = mult()
+                    mult().join()
                 }
             }
         }
     }
 
-    private fun factorial() {
-        val x = b_s.inputX.text.toString().toFloat()
-        val result = viewModel.factorial(x)
-        b_s.xFactorial.setText("x! = ${result}")
-    }
-
-    private fun sqrt() {
-        val x = b_s.inputX.text.toString().toFloat()
-        val result1 = String.format("%.3f", sqrt(x))
-        val result2 = String.format("%.3f", cbrt(x))
-        b_s.xSqrt.setText("x^(1/2) = ${result1}")
-        b_s.xSqrt3.setText("x^(1/3) = ${result2}")
-    }
-
-    private suspend fun log() {
-        val x = b_s.inputX.text.toString().toFloat()
-        if(x>0) {
-            val result = Math.log(x.toDouble()).toFloat()
-            b_s.xlog.setText("log(x) = ${String.format("%.3f", result)}")
-            b_s.xln.setText("ln(x) = ${String.format("%.3f", Math.log(x.toDouble()))}")
-        } else {
-            b_s.inputX.setText("Input x > 0!")
-            delay(1000L)
-            b_s.inputX.setText("")
+    private fun factorial() : Job{
+        return lifecycleScope.launch {
+            b_s.bFactorial.setText("STOP")
+            val x = b_s.inputX.text.toString().toFloat()
+            val result = viewModel.factorial(x)
+            delay(500L)
+            b_s.xFactorial.setText("x! = ${result}")
+            b_s.bFactorial.setText("RUN")
         }
     }
 
-    private fun mult() {
-        val x = b_s.inputX.text.toString().toFloat()
-        val result = x * x
-        b_s.xmult2.setText("x^2 = ${result}")
-        b_s.xmult3.setText("x^3 = ${x * x * x}")
+    private fun sqrt() : Job {
+        return lifecycleScope.launch {
+            b_s.bSqrt.setText("STOP")
+            b_s.progressBar.visibility = View.VISIBLE
+            val x = b_s.inputX.text.toString().toFloat()
+            val result1 = String.format("%.3f", sqrt(x))
+            val result2 = String.format("%.3f", cbrt(x))
+            delay(500L)
+            b_s.xSqrt.setText("x^(1/2) = ${result1}")
+            b_s.xSqrt3.setText("x^(1/3) = ${result2}")
+            b_s.bSqrt.setText("RUN")
+            b_s.progressBar.visibility = View.INVISIBLE
+        }
+    }
+
+    private suspend fun log() : Job {
+        return lifecycleScope.launch {
+            b_s.bLog.setText("STOP")
+            b_s.progressBar.visibility = View.VISIBLE
+            val x = b_s.inputX.text.toString().toFloat()
+            if(x>0) {
+                val result = Math.log10(x.toDouble()).toFloat()
+                delay(500L)
+                b_s.xlog.setText("log(x) = ${String.format("%.3f", result)}")
+                b_s.xln.setText("ln(x) = ${String.format("%.3f", Math.log(x.toDouble()))}")
+            } else {
+                b_s.inputX.setText("Input x > 0!")
+                delay(1000L)
+                b_s.inputX.setText("")
+            }
+            b_s.bLog.setText("RUN")
+            b_s.progressBar.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun mult() : Job {
+        return lifecycleScope.launch {
+            b_s.bmult.setText("STOP")
+            b_s.progressBar.visibility = View.VISIBLE
+            val x = b_s.inputX.text.toString().toFloat()
+            val result = x * x
+            delay(500L)
+            b_s.xmult2.setText("x^2 = ${result}")
+            b_s.xmult3.setText("x^3 = ${x * x * x}")
+            b_s.bmult.setText("RUN")
+            b_s.progressBar.visibility = View.INVISIBLE
+        }
+
     }
 
     private suspend  fun checkEmptyInput() : Boolean {
