@@ -42,4 +42,9 @@
         android:name="com.uteev.clevercalc.screens.therm.ThermFragment"
         android:label="fragment_therm"
         tools:layout="@layout/fragment_therm" />
+    <fragment
+        android:id="@+id/smartFragment"
+        android:name="com.uteev.clevercalc.screens.smart.SmartFragment"
+        android:label="fragment_high_intensive"
+        tools:layout="@layout/fragment_smart" />
 </navigation>

@@ -29,6 +29,8 @@
     <string name="ta_t_enter">Enter a temperature</string>
     <string name="ta_t_enter_hum">Enter humidity</string>
     <string name="ta_b_analyze">Analyze</string>
+    <string name="xFactorial">x!=</string>
+    <string name="run">RUN</string>
 
     <array name="ta_arr_for_enter_mode">
         <item>Kelvin</item>

@@ -39,12 +39,14 @@ class RootFragment : Fragment() {
                 0 -> {
                     tab.setIcon(R.drawable.circle_draw)
                 }
-
                 1 -> {
                     tab.setIcon(R.drawable.prime_draw)
                 }
                 2 -> {
                     tab.setIcon(R.drawable.therm_draw)
+                }
+                3 -> {
+                    tab.setIcon(R.drawable.smart_draw)
                 }
             }
         }.attach()

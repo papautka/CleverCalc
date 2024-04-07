@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.uteev.clevercalc.screens.circle.CircleFragment
 import com.uteev.clevercalc.screens.prime.PrimeFragment
+import com.uteev.clevercalc.screens.smart.SmartFragment
 import com.uteev.clevercalc.screens.therm.ThermFragment
 
 class ViewPagerAdapter(fragmentActivity : FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
@@ -17,7 +18,7 @@ class ViewPagerAdapter(fragmentActivity : FragmentActivity) : FragmentStateAdapt
            0 -> CircleFragment()
            1 -> PrimeFragment()
            2 -> ThermFragment()
-           else -> CircleFragment()
+           else -> SmartFragment()
        }
     }
 }
